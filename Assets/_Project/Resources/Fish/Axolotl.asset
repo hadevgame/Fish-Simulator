@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc23744ad7bdd9f47b501ae7aaa1d05a, type: 3}
+  m_Name: Axolotl
+  m_EditorClassIdentifier: 
+  fishID: 7
+  name: Axolotl
+  fishPrefab: {fileID: 8567396803868514638, guid: bff7bdacb4b53fc42ae6ed6de3dab477, type: 3}
+  tank: v3
+  icon: {fileID: 21300000, guid: 842f088a4e1464f4a9cc78f850a21943, type: 3}
+  basePrice: 9.5

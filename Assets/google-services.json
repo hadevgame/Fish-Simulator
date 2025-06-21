@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "605420650747",
+    "project_id": "and-fish-store-sim-six",
+    "storage_bucket": "and-fish-store-sim-six.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605420650747:android:0b6282ea07dc6512d1305e",
+        "android_client_info": {
+          "package_name": "com.aquatic.fish.store.simulator2025"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd0qpIkaVg0giSekhGNPd7S1CXb2Cqwfk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

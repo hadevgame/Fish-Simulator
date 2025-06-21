@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1295e68820c5842876035fefde242c, type: 3}
+  m_Name: Small Tank Clown
+  m_EditorClassIdentifier: 
+  ID: small_tank_clown
+  Name: Clownfish
+  Description: 'Desc: Small Tank Clown'
+  Avatar: {fileID: 0}
+  SortPriority: 0
+  id: Clown
+  name: Clownfish
+  image: {fileID: 21300000, guid: a45f7050bb03e0a4593e6b9a96b8d48f, type: 3}
+  price: 8
+  priceOne: 1.6
+  prefab: {fileID: 107985942877641508, guid: a4379190b682f464787370bff5685022, type: 3}
+  unlocklvl: 1

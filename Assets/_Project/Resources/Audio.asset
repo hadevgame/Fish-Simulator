@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab44a19c05b681438d31e32f3a8550e, type: 3}
+  m_Name: Audio
+  m_EditorClassIdentifier: 
+  ClipList:
+  - Name: BGM
+    AudioClip: {fileID: 8300000, guid: be274a3c0dc70ad479a221e87e5cb571, type: 3}
+  - Name: PU
+    AudioClip: {fileID: 8300000, guid: 091d298547a6909478c1eea30abb791a, type: 3}
+  - Name: DROP
+    AudioClip: {fileID: 8300000, guid: 975142b7915309444bee2e4fa986138d, type: 3}
+  - Name: TRASH
+    AudioClip: {fileID: 8300000, guid: 8299973b32ee25f4c88ce7c80721183c, type: 3}
+  - Name: ORDER
+    AudioClip: {fileID: 8300000, guid: 6b0ed4c347176be44b0178565f39666b, type: 3}
+  - Name: SCAN
+    AudioClip: {fileID: 8300000, guid: 60a01443a8d76fa41afd9b8c1e94ecc9, type: 3}
+  - Name: CASHTRAY
+    AudioClip: {fileID: 8300000, guid: 485b5401ebfae994c9157e4d0edf8c13, type: 3}
+  - Name: COIN
+    AudioClip: {fileID: 8300000, guid: b927fa3303c590c43bd6533fc7cd46dd, type: 3}
+  - Name: XP
+    AudioClip: {fileID: 8300000, guid: d77c08992be71bd4fb01b8d815fa0182, type: 3}
+  - Name: MONEY
+    AudioClip: {fileID: 8300000, guid: 22642f5aff17fb64fbc960f7dc11fb8f, type: 3}
+  - Name: LVLUP
+    AudioClip: {fileID: 8300000, guid: dbc2cedb355e5ad49b3485055940afd6, type: 3}
+  - Name: ED
+    AudioClip: {fileID: 8300000, guid: 3afb832fafb1d0941bef99b6b442b765, type: 3}
+  - Name: ES
+    AudioClip: {fileID: 8300000, guid: 14e790cdb1f898c4e9278e7884512d31, type: 3}
+  - Name: SPLASH
+    AudioClip: {fileID: 8300000, guid: d0834660223f9c44abb662c8c323a747, type: 3}

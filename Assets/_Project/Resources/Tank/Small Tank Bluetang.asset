@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1295e68820c5842876035fefde242c, type: 3}
+  m_Name: Small Tank Bluetang
+  m_EditorClassIdentifier: 
+  ID: small_tank_bluetang
+  Name: 'Bluetang '
+  Description: 'Desc: Small Tank Bluetang'
+  Avatar: {fileID: 0}
+  SortPriority: 0
+  id: Bluetang
+  name: 'Bluetang '
+  image: {fileID: 21300000, guid: 952485c06f853964d91e96b17085935d, type: 3}
+  price: 12
+  priceOne: 2.4
+  prefab: {fileID: 7135733142019983435, guid: d7e23bdcb4402494492c76db53c55831, type: 3}
+  unlocklvl: 2

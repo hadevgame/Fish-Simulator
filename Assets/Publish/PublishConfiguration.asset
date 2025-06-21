@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003f57ea12780da4a99c210df1d5f862, type: 3}
+  m_Name: PublishConfiguration
+  m_EditorClassIdentifier: 
+  ApplovinSDKKey: bZncTTqqX6Kebm0dMxUgLHPAC7HVzkQo4iVz2zT32odFJeB7qTQbIf2SfSB9Q65Q3lhWc0EI9OEDhFyxrxo7f2
+  AdMobAndroidAppId: ca-app-pub-2010884681696999~4193502629
+  AdMobIosAppId: 
+  SettingsAndroid:
+    PrivacyPolicyUrl: https://doc-hosting.flycricket.io/gamestudiomini-privacy-policy/2bc7fdae-6782-4ca7-a183-45e098ebc9ce/privacy
+    TermOfServiceUrl: https://doc-hosting.flycricket.io/gamestudiomini-terms-of-use/f29c5b75-993e-4d31-acd6-123fd4881bba/terms

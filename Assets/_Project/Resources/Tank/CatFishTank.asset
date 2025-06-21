@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1295e68820c5842876035fefde242c, type: 3}
+  m_Name: CatFishTank
+  m_EditorClassIdentifier: 
+  id: CatFish
+  name: CatFish tank
+  image: {fileID: 21300000, guid: 352d12d34909d904ca1cddb3611420a0, type: 3}
+  price: 25
+  priceOne: 5
+  prefab: {fileID: 8728749331279933761, guid: 17845b4d239e22b4d8fa30fa5089945d, type: 3}
