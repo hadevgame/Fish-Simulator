@@ -10,13 +10,11 @@ using API.Ads;
 
 public class SettingGUI : BaseGUI
 {
-    //[SerializeField] private Button btnSetting;
     [SerializeField] private Button btnExit;
     [SerializeField] private GameObject panelSetting;
     private void Start()
     {
         OpenPanel();
-        //panelSetting.SetActive(false); 
     }
 
     public void OpenPanel()
@@ -29,14 +27,7 @@ public class SettingGUI : BaseGUI
     public void ClosePanel()
     {
         Vibrator.SoftVibrate();
-        if (AppRemoteDatas.Ins.CanPlayInter) 
-        {
-            AdManager.Ins.ShowFull("exit_settings", () =>
-            {
-                GUIController.Ins.Close<SettingGUI>();
-            });
-        }
-        else GUIController.Ins.Close<SettingGUI>();
+        GUIController.Ins.Close<SettingGUI>();
 
     }
 

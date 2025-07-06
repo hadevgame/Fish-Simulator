@@ -2,12 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UCExtension;
 using UCExtension.Audio;
 using UnityEngine;
-using UnityEngine.XR;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class CashDesk : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class CashDesk : MonoBehaviour
     private List<CustomerStateMachine> waitingList = new List<CustomerStateMachine>();
     private List<CustomerStateMachine> buyingList = new List<CustomerStateMachine> ();
 
-    public static Action<CustomerStateMachine> OnCustomerReadyToQueue = null; // Event khi khách hàng mua xong
+    public static Action<CustomerStateMachine> OnCustomerReadyToQueue = null; 
     public static Action<CustomerStateMachine> OnRemoveCustomerFromQueue = null;
     public static Func<CustomerStateMachine, bool> OnCheckFirstCustomer = null;
     public static Func<bool> OnCheckQueue = null;
@@ -175,8 +172,7 @@ public class CashDesk : MonoBehaviour
     {
         Vector3 end = endCashSlot.transform.position;
         CustomerStateMachine cus = GetFirstCustomerInQueue();
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("SCAN"));
-        //fish.GetComponent<FishSwim>().enabled = false;
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("SCAN"));
         if (fish.TryGetComponent<FishSwim>(out var swim))
         {
             swim.enabled = false;
@@ -191,7 +187,6 @@ public class CashDesk : MonoBehaviour
                     highlight.enabled = false;
                     currentTank.GetComponent<FishTankBox>().fishList.Add(fish);
                     fish.transform.SetParent(currentTank.transform);
-                    //fish.gameObject.SetActive(false);
                 }
                 clickedFishCount++;
                 if (clickedFishCount >= cus.collectedFish)
@@ -201,7 +196,6 @@ public class CashDesk : MonoBehaviour
                     
                 }
             });
-        Debug.Log("Fish clicked and moved to cashier.");
     }
     public bool HasSpace()
     {
@@ -218,9 +212,8 @@ public class CashDesk : MonoBehaviour
         if (HasSpace())
         {
             Transform queueSpot = queuePositions[waitingCustomers.Count]; 
-            waitingCustomers.Enqueue(customer); // Thêm khách vào danh sách hàng đợi
-            customer.SetQueuePosition(queueSpot); // Di chuyển khách hàng đến vị trí hàng đợi
-            //customer.ChangeState<CashingState>(); // Đổi trạng thái sang CashingState
+            waitingCustomers.Enqueue(customer); 
+            customer.SetQueuePosition(queueSpot); 
         }
         else
         {
@@ -232,7 +225,7 @@ public class CashDesk : MonoBehaviour
     {
         if (waitingCustomers.Count > 0 && waitingCustomers.Peek() == customer)
         {
-            waitingCustomers.Dequeue(); // Xóa khách đầu khỏi hàng đợi
+            waitingCustomers.Dequeue(); 
         }
         sastisfiedcus++;
         
@@ -324,7 +317,7 @@ public class CashDesk : MonoBehaviour
         {
             foreach (var fish in customer.tank.fishList)
             {
-                int fishID = fish.GetComponent<Fish>().data.fishID; // Lấy ID cá
+                int fishID = fish.GetComponent<Fish>().data.fishID; 
                 fishIDs.Add(fishID);
             }
         }

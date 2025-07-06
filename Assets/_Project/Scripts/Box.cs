@@ -20,7 +20,7 @@ public class Box : MonoBehaviour
         {
             itemInside = Instantiate(itemPrefab, transform.position, Quaternion.identity);
             itemInside.transform.SetParent(transform);
-            itemInside.SetActive(false); // Giữ vật phẩm ẩn
+            itemInside.SetActive(false); 
         }
     }
 

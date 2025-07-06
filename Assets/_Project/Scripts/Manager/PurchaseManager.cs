@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UCExtension;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PurchaseManager : Singleton<PurchaseManager>
 {
@@ -60,7 +59,7 @@ public class PurchaseManager : Singleton<PurchaseManager>
 
                 if (box.itemInside != null)
                 {
-                    ItemSLot tank = box.itemInside.GetComponent<BaseTank>().tank;
+                    ItemData tank = box.itemInside.GetComponent<BaseTank>().tank;
                     if (tank != null)
                     {
                         string tankName = tank.name;
@@ -76,7 +75,7 @@ public class PurchaseManager : Singleton<PurchaseManager>
                 PlayerPrefs.SetFloat($"FishTankBox_{i}_PosY", item.transform.position.y);
                 PlayerPrefs.SetFloat($"FishTankBox_{i}_PosZ", item.transform.position.z);
 
-                ItemSLot tankboxData = tankBoxScript.tankData;
+                ItemData tankboxData = tankBoxScript.tankData;
                 if (tankboxData != null)
                 {
                     string tankID = tankboxData.id;
@@ -145,7 +144,6 @@ public class PurchaseManager : Singleton<PurchaseManager>
                 }
                 AddItemToList(box);
                 box.transform.SetParent(transform);
-                //purchasedItems.Add(box);
             }
             else 
             {
@@ -177,14 +175,11 @@ public class PurchaseManager : Singleton<PurchaseManager>
                                 int fishCount = PlayerPrefs.GetInt($"FishTankBox_{i}_Fish_{fishData.fishID}", 0);
                                 for (int j = 0; j < fishCount; j++)
                                 {
-                                    //GameObject fishObj = Instantiate(fishData.fishPrefab, fishTankBox.AddPos.position , Quaternion.identity);
-                                    //fishTankBox.AddFish(fishObj);
                                     StartCoroutine(DelayAddFish(fishData.fishPrefab, fishTankBox));
                                 }
                             }
                             AddItemToList(tankInstance);
                             tankInstance.transform.SetParent(transform);
-                            //purchasedItems.Add(tankInstance);
                         }
                     }
                 }

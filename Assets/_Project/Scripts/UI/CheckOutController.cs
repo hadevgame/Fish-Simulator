@@ -22,7 +22,7 @@ public class CheckOutController : Singleton<CheckOutController>
     [SerializeField] private CashDesk cashDesk;
     [SerializeField] private Button btnExit;
     
-    public bool IsActive => gameObject.activeSelf; // Kiểm tra checkout có active không
+    public bool IsActive => gameObject.activeSelf; 
 
     private void Start()
     {
@@ -44,28 +44,11 @@ public class CheckOutController : Singleton<CheckOutController>
     public void ExitCheckOut() 
     {
         Vibrator.SoftVibrate();
-        if (AppRemoteDatas.Ins.CanPlayInter) 
-        {
-            AdManager.Ins.ShowFull("exit_checkout", () =>
-            {
-                checkOutCamera.SetActive(false);
-                //playCanvas.SetActive(true);
-                GUIController.Ins.Open<PlayGUI>();
-                checkOutCanvas.SetActive(false);
-                mainCamera.SetActive(true);
-                btnExit.gameObject.SetActive(false);
-            });
-        }
-        else 
-        {
-            checkOutCamera.SetActive(false);
-            //playCanvas.SetActive(true);
-            GUIController.Ins.Open<PlayGUI>();
-            checkOutCanvas.SetActive(false);
-            mainCamera.SetActive(true);
-            btnExit.gameObject.SetActive(false);
-        }
-        
+        checkOutCamera.SetActive(false);
+        GUIController.Ins.Open<PlayGUI>();
+        checkOutCanvas.SetActive(false);
+        mainCamera.SetActive(true);
+        btnExit.gameObject.SetActive(false);
     }
     public void PayMent(float money, int count , bool iscard) 
     {

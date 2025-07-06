@@ -1,7 +1,4 @@
-﻿using API.Ads;
-using API.LogEvent;
-using Firebase.Analytics;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,28 +10,33 @@ using UnityEngine;
 public class ShopController : MonoBehaviour
 {
     public static ShopController Ins;
-    [Header("Camera & Canvas")]
+    
+    public List<GameObject> itemCartList = new List<GameObject>();
+   
+    [SerializeField] private List<Transform> spawnItemPositions; 
+
+    [SerializeField] private float spawnDelay = 30f;
+
+    [SerializeField] private GameObject box;
+
+    [SerializeField] private ShopGUI shopGUI;
+
     [SerializeField] private GameObject shopCamera = null;
+
     [SerializeField] private GameObject mainCamera = null;
 
     [SerializeField] private WaitingGUI waitingGUI;
 
-    [Header("Cart System")]
-    public List<GameObject> itemCartList = new List<GameObject>();
-    private float total = 0;
-
-    [Header("Spawn Settings")]
-    [SerializeField] private List<Transform> spawnItemPositions; 
-    [SerializeField] private float spawnDelay = 30f;
-    
-    [Header("References")]
-    [SerializeField] private GameObject box;
-    [SerializeField] private ShopGUI shopGUI;
 
     private Queue<(string itemid, GameObject obj, string itemName)> spawnQueue = new Queue<(string, GameObject, string)>();
+
     private bool isProcessingQueue = false;
+
     private float currentDelayTimer;
+
     private int currentSpawnIndex = 0;
+
+    private float total = 0;
 
     public static Func<Queue<(string itemid, GameObject obj, string itemName)>> OnGetSpawnQueue;
 
@@ -61,7 +63,7 @@ public class ShopController : MonoBehaviour
         shopCamera = CameraManager.Ins.GetCam(2);
         mainCamera = CameraManager.Ins.GetCam(1);
         shopGUI = GUIController.Ins.Open<ShopGUI>();
-        spawnItemPositions = GameManager.Instance.GetSpawnPoint();
+        spawnItemPositions = StoreManager.Instance.GetSpawnPoint();
     }
     public void ExitShop()
     {
@@ -89,7 +91,7 @@ public class ShopController : MonoBehaviour
         if (!isProcessingQueue && spawnQueue.Count > 0)
             StartCoroutine(ProcessSpawnQueue());
         shopGUI.ShowMessage("Purchase successful!", false);
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("CASHTRAY"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("CASHTRAY"));
         shopGUI.UpdateTotalPrice(0);
         total = 0;
         
@@ -121,7 +123,6 @@ public class ShopController : MonoBehaviour
     private IEnumerator ProcessSpawnQueue()
     {
         isProcessingQueue = true;
-        //waitingQueue.SetWaitingPanelActive(true);
         waitingGUI.SetWaitingPanelActive(true);
 
         while (spawnQueue.Count > 0)
@@ -161,10 +162,8 @@ public class ShopController : MonoBehaviour
 
     private void SpawnItem(string itemid, GameObject obj)
     {
-        //FirebaseLogger.Ins.LogEvent("buy_item", new Firebase.Analytics.Parameter("id", itemid));
-        //FirebaseLogger.Ins.LogEvent($"buy_item", new Parameter[] { new Parameter("id", itemid), new Parameter("level",ShopLevelManager.Ins.CurrentLevel.ToString() ) });
         Transform spawnPos = spawnItemPositions[currentSpawnIndex];
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("ORDER"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("ORDER"));
         if (itemid.Contains("Tank"))
         {
             var boxInstance = Instantiate(box, spawnPos.position, Quaternion.identity,spawnPos);
@@ -261,7 +260,6 @@ public class ShopController : MonoBehaviour
             GameObject prefab = null;
             string itemName = "";
 
-            // Ưu tiên tìm trong FishTankBoxDatabase
             var tank = FishTankBoxDatabase.Instance?.GetFishTankByID(itemid);
             if (tank != null)
             {

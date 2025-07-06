@@ -13,7 +13,7 @@ public class MoneyTouchHandler : MonoBehaviour, IPointerClickHandler
 
         if (customer != null)
         {
-            this.gameObject.SetActive(false);  // Ẩn tiền đi
+            this.gameObject.SetActive(false);  
 
             customer.ChangeState<GivingState>();  
         }

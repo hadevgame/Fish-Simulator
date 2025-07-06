@@ -8,7 +8,6 @@ using UnityEngine.Events;
 using UCExtension;
 using UCExtension.GUI;
 using System.Collections.Generic;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 public class CrossHairInteraction : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class CrossHairInteraction : MonoBehaviour
     [SerializeField] private Button buttonDrop;
     [SerializeField] private Button buttonPlacing;
     [SerializeField] private Image holdLoad;
-    //public PlayGUI playUIManager;
     
     private GameObject lastHitObject;
     private InteractionController interactionController;
@@ -83,9 +81,6 @@ public class CrossHairInteraction : MonoBehaviour
         }
         else if (interactionController.heldObject != null && interactionController.isHeld && !interactionController.isPlacing)
         {
-            //if (/*PlayerPrefs.GetInt("HasSeenTutorial") == 1*/TutorialManager.Ins.IsFinished && interactionController.candrop)
-            //    ToggleButton(buttonDrop, true);
-
             if (interactionController.heldObject.CompareTag(GameConstants.BOX)) 
             {
                 ToggleButton(buttonPlacing, true);
@@ -135,10 +130,6 @@ public class CrossHairInteraction : MonoBehaviour
     }
     public void StartHold()
     {
-        //if (!TutorialManager.Ins.IsFinished)
-        //{
-        //    return;
-        //}
         if (interactionController.heldObject != null) return;
         if (!RaycastHitsFishTank(out GameObject fishTank)) return;
         if (!fishTank.GetComponent<BaseTank>().isValidSlot) return;
@@ -181,7 +172,6 @@ public class CrossHairInteraction : MonoBehaviour
         if (trigger == null)
             trigger = button.gameObject.AddComponent<EventTrigger>();
 
-        // Clear các event cũ để tránh trùng
         trigger.triggers.Clear();
 
         // PointerDown → StartHold
@@ -210,13 +200,12 @@ public class CrossHairInteraction : MonoBehaviour
             {
                 HandleInteraction(hitObject, () => interactionController.PickupObject(hitObject));
                 if (hitObject.CompareTag(GameConstants.FISH_TANK_BOX))
-                    //playUIManager.TurnOnHover(hitObject); 
                     GUIController.Ins.Open<HoverGUI>().SetData(hitObject);
                 return;
             }
             if (hitObject.CompareTag(GameConstants.SIGN_BOARD))
             {
-                HandleInteraction(hitObject, () => GameManager.Instance.ToggleStore());
+                HandleInteraction(hitObject, () => StoreManager.Instance.ToggleStore());
                 return;
             }
             if (hitObject.CompareTag(GameConstants.PAY_COMPUTER))
@@ -233,11 +222,7 @@ public class CrossHairInteraction : MonoBehaviour
             {
                 return;
             }
-            if (hitObject.CompareTag(GameConstants.PRICE))
-            {
-                HandleInteraction(hitObject, () => interactionController.OpenSetPrice(hitObject));
-                return;
-            }
+            
         }
 
         ResetInteraction();
@@ -313,14 +298,6 @@ public class CrossHairInteraction : MonoBehaviour
     {
         if (hitObject != lastHitObject || currentAction != action)
         {
-            //if (TutorialManager.Ins == null)
-            //    buttonInteract.onClick.RemoveAllListeners();
-            //else
-            //{
-            //    if (TutorialManager.Ins.IsFinished)
-            //        buttonInteract.onClick.RemoveAllListeners();
-            //}
-
             currentAction = action;
             buttonInteract.onClick.AddListener(() => currentAction.Invoke());
 
@@ -356,14 +333,6 @@ public class CrossHairInteraction : MonoBehaviour
             outline.OutlineColor = Color.green;
             outline.OutlineWidth = 10;
         }
-        //QOutline outline = obj.GetComponent<QOutline>();
-        //if (outline != null)
-        //{
-        //    Color c = outline.OutlineColor;
-        //    c.a = 1f; // hiện lên
-        //    outline.OutlineColor = c;
-        //    outline.OutlineWidth = 10f;
-        //}
     }
     private void SetOutline(GameObject obj)
     {
@@ -371,15 +340,6 @@ public class CrossHairInteraction : MonoBehaviour
         lastHitObject = obj;
         EnableOutline(lastHitObject);
     }
-
-    //private void ChangeButtonColorEffect(Color newColor)
-    //{
-    //    ColorBlock cb = buttonInteract.colors;
-    //    cb.normalColor = newColor;
-    //    cb.highlightedColor = newColor;
-    //    buttonInteract.colors = cb;
-    //}
-
     private bool RaycastHitsFishTank(out GameObject fishTank)
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));

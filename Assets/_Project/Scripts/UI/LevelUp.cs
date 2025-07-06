@@ -28,7 +28,6 @@ public class LevelUp : PopupAnim
                 Text itemText = listSlot[i].GetComponentInChildren<Text>();
                 if (itemText != null)
                 {
-                    // Set the item text
                     itemText.text = unlockedItems[i];
                 }
             }

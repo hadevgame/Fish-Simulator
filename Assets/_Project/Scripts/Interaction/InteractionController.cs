@@ -7,7 +7,6 @@ using UCExtension;
 using System;
 using System.Collections;
 using UCExtension.Audio;
-using System.Data;
 
 public class InteractionController : Singleton<InteractionController>
 {
@@ -26,10 +25,9 @@ public class InteractionController : Singleton<InteractionController>
     public static Action<bool> UpdatePlacingState;
     public static Action<bool> UpdateInteractState;
 
-    //[SerializeField] private PlayGUI playUIManager;
     [SerializeField] private Material placingMaterial, invalidPlacingMaterial;
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject checkOutCanvas/*, shopCanvas*/;
+    [SerializeField] private GameObject checkOutCanvas;
     [SerializeField] private Transform checkoutPoint;
     [SerializeField] private Transform shopPoint;
     private void Update()
@@ -43,7 +41,7 @@ public class InteractionController : Singleton<InteractionController>
     public void StartPlacingMode()
     {
         if (heldObject == null) return;
-        GameManager.OnPlacingMode?.Invoke(true);
+        StoreManager.OnPlacingMode?.Invoke(true);
 
         lastValidPosition = heldObject.transform.position;
         pos = heldObject.transform.position;
@@ -79,7 +77,7 @@ public class InteractionController : Singleton<InteractionController>
     public void CancelPlacing()
     {
         if (heldObject == null) return;
-        GameManager.OnPlacingMode?.Invoke(false);
+        StoreManager.OnPlacingMode?.Invoke(false);
         Vibrator.SoftVibrate();
         isPlacing = false;
         UpdatePlacingState?.Invoke(true);
@@ -117,7 +115,7 @@ public class InteractionController : Singleton<InteractionController>
     public void ConfirmPlacingMode()
     {
         if (heldObject == null) return;
-        GameManager.OnPlacingMode?.Invoke(false);
+        StoreManager.OnPlacingMode?.Invoke(false);
 
         isPlacing = false;
         GUIController.Ins.Close<PlacingGUI>();
@@ -200,7 +198,6 @@ public class InteractionController : Singleton<InteractionController>
         CheckPlacingValidity();
     }
 
-
     //duyet tat ca Collider va kiem tra va cham
     private void CheckPlacingValidity()
     {
@@ -240,7 +237,7 @@ public class InteractionController : Singleton<InteractionController>
     public void PickupObject(GameObject obj)
     {
         if (heldObject != null || isTrashing) return;
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("PU"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("PU"));
         Vibrator.SoftVibrate();
         obj.transform.SetParent(null);
         heldObject = obj;
@@ -254,7 +251,7 @@ public class InteractionController : Singleton<InteractionController>
     public void DropObject()
     {
         if (heldObject == null) return;
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("DROP"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("DROP"));
         Vibrator.SoftVibrate();
         heldObject.transform.SetParent(null);
         if (heldObject.TryGetComponent(out Rigidbody rb))
@@ -304,7 +301,6 @@ public class InteractionController : Singleton<InteractionController>
         CharacterController characterController = player.GetComponent<CharacterController>();
         characterController.enabled = true;
 
-        //canvas.SetActive(true);
         if (isShop) GUIController.Ins.Open<ShopGUI>().TogglePanel(true);
         else checkOutCanvas.SetActive(true);
     }
@@ -355,7 +351,7 @@ public class InteractionController : Singleton<InteractionController>
             return;
         }
         Vibrator.SoftVibrate();
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("TRASH"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("TRASH"));
         isTrashing = true;
         heldObject = null;
         isHeld = false;
@@ -397,23 +393,14 @@ public class InteractionController : Singleton<InteractionController>
         QOutline outline = obj.GetComponent<QOutline>();
         if (outline != null)
         {
-            //outline.enabled = false;
-            //playUIManager.ResetUIForNewObject();
-            //GUIController.Ins.Open<PlayGUI>().ResetUIForNewObject();
+            
             Color c = outline.OutlineColor;
             c.a = 0f; // tắt
             outline.OutlineColor = c;
         }
     }
 
-    public void OpenSetPrice(GameObject obj) 
-    {
-        var priceItem = obj.transform.parent.GetComponent<PriceItemUI>();
-        if (priceItem != null)
-        {
-            SetPriceUI.Ins.Open(priceItem.GetData());
-        }
-    }
+   
 }
 
 

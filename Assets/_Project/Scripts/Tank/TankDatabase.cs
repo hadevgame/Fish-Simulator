@@ -5,7 +5,7 @@ using UnityEngine;
 public class TankDatabase : MonoBehaviour
 {
     public static TankDatabase Instance;
-    public List<ItemSLot> tankTypes;
+    public List<ItemData> tankTypes;
     private void Awake()
     {
         if (Instance == null)
@@ -14,11 +14,11 @@ public class TankDatabase : MonoBehaviour
         }
     }
    
-    public ItemSLot GetFishTankByName(string name)
+    public ItemData GetFishTankByName(string name)
     {
         return tankTypes.Find(ft => ft.name == name);
     }
-    public ItemSLot GetFishTankByID(string id)
+    public ItemData GetFishTankByID(string id)
     {
         return tankTypes.Find(ft => ft.id == id);
     }

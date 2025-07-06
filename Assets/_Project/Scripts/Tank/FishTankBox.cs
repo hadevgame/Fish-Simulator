@@ -8,7 +8,7 @@ using UnityEngine;
 public class FishTankBox : MonoBehaviour
 {
     public List<GameObject> fishList = new List<GameObject>();
-    public ItemSLot tankData;
+    public ItemData tankData;
     [SerializeField] private Transform addPos;
     public Transform AddPos => addPos;
     [SerializeField] private Collider colliderPos;
@@ -32,7 +32,7 @@ public class FishTankBox : MonoBehaviour
             GameObject fish = fishList[0];
             if (ft.AddCreature(fish)) 
             {
-                AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("SPLASH"));
+                AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("SPLASH"));
                 fishList.RemoveAt(0);
                 Debug.Log("Cá đã được chuyển vào bể!");
             }
@@ -67,8 +67,6 @@ public class FishTankBox : MonoBehaviour
             amphibian.enabled = false;
 
             fishSwim.enabled = false;
-            //fishSwim.SetUp(transform, speed, padding);
-            //fishSwim.SetMovingToTank(true);
 
         }
         else if (fishSwim != null)

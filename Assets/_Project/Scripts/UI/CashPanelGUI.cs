@@ -28,9 +28,6 @@ public class CashPanelGUI : BaseGUI
     {
         CardPanel.OnConfirmPayment = CheckTotal;
         MoneyPanel.OnCheckPayment = CheckPayment;
-        //cashDesk = CashDesk.Instance;
-        //totalScene = CheckOutController.Ins.totalScene.gameObject;
-        //cardUI = CheckOutController.Ins.cardpaymentScene;
     }
 
     public void ToggleCash(bool active) 
@@ -54,9 +51,6 @@ public class CashPanelGUI : BaseGUI
         if (totalStr == requiredStr)
         {
             success = true;
-            Debug.Log("Thanh toán thành công!");
-            FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("is_card", iscard.ToString()), new Parameter("success", success.ToString()) });
-            //FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("cashing_type", cashingType), new Parameter("success", success.ToString()) });
             cardUI.gameObject.SetActive(false);
             ToggleCard(false);
             totalScene.SetActive(true);
@@ -67,25 +61,16 @@ public class CashPanelGUI : BaseGUI
             if (payCus != null)
             {
                 payCus.ChangeState<TakingState>();
-                ShopLevelManager.OnAddExp?.Invoke(5);
+                LevelManager.OnAddExp?.Invoke(5);
             }
             NotifiGUI.Instance.ShowPopup("Payment successful", null,1f, ()=> 
             {
-                AdManager.Ins.ShowFull("payment_success");
-                //AdManager.Ins.ShowFull("payment_success", () =>
-                //{
-                    
-                //});
             });
-            
-            
         }
         else
         {
             success = false;
             NotifiGUI.Instance.ShowPopup("Payment fail", Color.red);
-            FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("is_card", iscard.ToString()), new Parameter("success", success.ToString()) });
-            //FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("cashing_type", cashingType), new Parameter("success", success.ToString()) });
         }
     }
 
@@ -97,24 +82,18 @@ public class CashPanelGUI : BaseGUI
         {
             success = true;
             NotifiGUI.Instance.ShowPopup("Payment successful");
-            FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("is_card", iscard.ToString()), new Parameter("success", success.ToString()) });
-            //FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("cashing_type", cashingType), new Parameter("success", success.ToString()) });
             cashUI.SetDefault();
             MoneyManager.instance.AddMoney(cashUI.Total);
-            
             cashUI.gameObject.SetActive(false);
             ToggleCash(false);
             totalScene.SetActive(true);
             CheckOutController.Ins.ToggleButton(true);
-
             return true;
         }
         else
         {
             success = false;
             NotifiGUI.Instance.ShowPopup("Payment fail", Color.red);
-            FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("is_card", iscard.ToString()), new Parameter("success", success.ToString()) });
-            //FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("cashing_type", cashingType), new Parameter("success", success.ToString()) });
             return false;
         }
     }

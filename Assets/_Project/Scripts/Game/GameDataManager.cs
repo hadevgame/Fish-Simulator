@@ -7,7 +7,7 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance;
     [SerializeField] private PurchaseManager purchaseManager;
-    [SerializeField] private ShopLevelManager shopLevelManager;
+    [SerializeField] private LevelManager shopLevelManager;
     [SerializeField] private CashDesk cashDesk;
     private void Awake()
     {
@@ -45,9 +45,9 @@ public class GameDataManager : MonoBehaviour
             PlayerPrefs.SetFloat("Expense", MoneyManager.instance.Expense);
         }
 
-        if (GameManager.Instance != null )
+        if (StoreManager.Instance != null )
         {
-            PlayerPrefs.SetInt("IsShopOpen", GameManager.Instance.GetState() ? 1 : 0);
+            PlayerPrefs.SetInt("IsShopOpen", StoreManager.Instance.GetState() ? 1 : 0);
         }
 
         // Lưu số lượng bể cá
@@ -115,10 +115,10 @@ public class GameDataManager : MonoBehaviour
             MoneyManager.instance.SetMoney(money, income, expense);
         }
 
-        if (GameManager.Instance != null)
+        if (StoreManager.Instance != null)
         {
             bool isShopOpen = PlayerPrefs.GetInt("IsShopOpen", 0) == 1;
-            GameManager.Instance.SetStoreStatus(isShopOpen);
+            StoreManager.Instance.SetStoreStatus(isShopOpen);
         }
 
         if (TankManager.Instance != null)
@@ -144,7 +144,7 @@ public class GameDataManager : MonoBehaviour
                     float posZ = PlayerPrefs.GetFloat($"Tank_{i}_PosZ", 0);
                     float rotY = PlayerPrefs.GetFloat($"Tank_{i}_RotY", 0);
 
-                    ItemSLot tankSlot = TankDatabase.Instance.tankTypes.Find(t => t.id == tankID);
+                    ItemData tankSlot = TankDatabase.Instance.tankTypes.Find(t => t.id == tankID);
                     if (tankSlot != null)
                     {
                         GameObject prefab = tankSlot.prefab;

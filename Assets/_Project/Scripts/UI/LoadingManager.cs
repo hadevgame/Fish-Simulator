@@ -13,7 +13,7 @@ public class LoadingManager : MonoBehaviour
     {
         GUIController.Ins.Open<LoadingGUI>().SetWait(() => true).OnClose(() =>
         {
-            AudioManager.Ins.ChangeBGMusic(GameManager.Instance.AudioSO.GetAudioClip("BGM"));
+            AudioManager.Ins.ChangeBGMusic(StoreManager.Instance.AudioSO.GetAudioClip("BGM"));
         });
     }
     

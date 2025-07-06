@@ -19,16 +19,11 @@ public class CameraManager : Singleton<CameraManager>
     }
     public void ChangeShopCam() 
     {
-        //checkoutCam.enabled = false;
-        //shopCam.enabled = true;
-
         checkoutCam.gameObject.SetActive(false);
         shopCam.gameObject.SetActive(true);
     }
     public void ChangeCheckOutCam()
     {
-        //checkoutCam.enabled = true;
-        //shopCam.enabled = false;
         checkoutCam.gameObject.SetActive(true);
         shopCam.gameObject.SetActive(false);
     }

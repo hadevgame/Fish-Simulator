@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class ItemSlotDisplay : MonoBehaviour
 {
-    [SerializeField] private ItemSLot item;
+    [SerializeField] private ItemData item;
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Text priceText;
     [SerializeField] private Text priceAddToCartText;
@@ -36,12 +36,10 @@ public class ItemSlotDisplay : MonoBehaviour
         imageItem.sprite = item.image;
         priceText.text = "$" + item.priceOne.ToString();
         priceAddToCartText.text = "$" + item.price.ToString();
-        //curPrice = int.Parse(priceAddToCartText.text);
-        //curPrice = int.Parse(priceAddToCartText.text.Replace("$", ""));
         curPrice = float.Parse(priceAddToCartText.text.Replace("$", ""));
         itemPrefab = item.prefab;
 
-        int lvl = ShopLevelManager.Ins.CurrentLevel;
+        int lvl = LevelManager.Ins.CurrentLevel;
         if (lvl < item.unlocklvl)
         {
             LockItem();

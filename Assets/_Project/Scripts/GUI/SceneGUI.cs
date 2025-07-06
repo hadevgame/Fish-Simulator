@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class SceneGUI : BaseGUI
 {
     [SerializeField] private Button btnSetting;
-    [SerializeField] private ShopLevelManager shopLevelManager;
+    [SerializeField] private LevelManager shopLevelManager;
     private void Start()
     {
         btnSetting.onClick.AddListener(OpenSetting);
@@ -20,7 +20,7 @@ public class SceneGUI : BaseGUI
         GUIController.Ins.Open<SettingGUI>();
     }
 
-    public ShopLevelManager GetLevel() 
+    public LevelManager GetLevel() 
     {
         return shopLevelManager;
     }

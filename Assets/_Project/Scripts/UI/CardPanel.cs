@@ -55,7 +55,7 @@ public class CardPanel : MonoBehaviour
         }
         else
         {
-            if ((int)currentInput >= 99999) return; // giới hạn số lớn
+            if ((int)currentInput >= 99999) return; 
             currentInput = currentInput * 10 + digit;
         }
 
@@ -87,7 +87,6 @@ public class CardPanel : MonoBehaviour
         Vibrator.SoftVibrate();
         if (hasDecimal && decimalPlaces > 0)
         {
-            // Remove last decimal digit
             float power = Mathf.Pow(10, decimalPlaces);
             float lastDigit = (currentInput * power) % 10;
             currentInput -= lastDigit / power;
@@ -95,12 +94,10 @@ public class CardPanel : MonoBehaviour
         }
         else if (hasDecimal)
         {
-            // Remove decimal point
             hasDecimal = false;
         }
         else
         {
-            // Remove last integer digit
             currentInput = Mathf.Floor(currentInput / 10);
         }
 
@@ -117,7 +114,6 @@ public class CardPanel : MonoBehaviour
     }
     private void Confirm()
     {
-        // Round to 2 decimal places for final amount
         float amount = (float)Math.Round(currentInput, 2);
         OnConfirmPayment?.Invoke(amount);
         Vibrator.SoftVibrate();

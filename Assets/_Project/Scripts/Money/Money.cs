@@ -5,8 +5,8 @@ using UnityEngine;
 public class Money : MonoBehaviour
 {
     public bool isCoin;
-    public float value; // Mệnh giá của tờ tiền
-    public MeshFilter moneyMesh; // Renderer để gán material
+    public float value; 
+    public MeshFilter moneyMesh; 
     public void SetMoney(float amount, Mesh mesh)
     {
         value = amount;

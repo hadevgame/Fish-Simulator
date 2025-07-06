@@ -15,7 +15,7 @@ public class CustomerOrder
     }
     public void GenerateRandomOrder()
     {
-        int level = ShopLevelManager.Ins.CurrentLevel;
+        int level = LevelManager.Ins.CurrentLevel;
         int minInt = 0;
         int maxInt = 0;
 
@@ -57,7 +57,7 @@ public class CustomerOrder
     public void SetFishCount(int count) 
     {
         fishCount = count;
-        int level = ShopLevelManager.Ins.CurrentLevel;
+        int level = LevelManager.Ins.CurrentLevel;
         int minInt = 0;
         int maxInt = 0;
 
@@ -80,8 +80,8 @@ public class CustomerOrder
             maxInt = Mathf.RoundToInt(fishCount * 10f + 10f);
         }
 
-        int integerPart = Random.Range(minInt, maxInt); // phần nguyên
-        int decimalPart = Random.Range(0, 100);        // phần thập phân: 0 → 99
+        int integerPart = Random.Range(minInt, maxInt); 
+        int decimalPart = Random.Range(0, 100);        
 
         payMoney = integerPart + decimalPart / 100f;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FishTankBoxDatabase : MonoBehaviour
 {
     public static FishTankBoxDatabase Instance;
-    public List<ItemSLot> tankTypes;
+    public List<ItemData> tankTypes;
     private void Awake()
     {
         if (Instance == null)
@@ -13,7 +13,7 @@ public class FishTankBoxDatabase : MonoBehaviour
             Instance = this;
         }
     }
-    public ItemSLot GetFishTankByID(string id)
+    public ItemData GetFishTankByID(string id)
     {
         return tankTypes.Find(ft => ft.id == id);
     }

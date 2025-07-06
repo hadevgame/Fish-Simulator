@@ -38,7 +38,6 @@ public class GameTimeManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //InitTime();
             buttonEnd.onClick.AddListener(TurnOnStatistical);
         }
         else
@@ -85,7 +84,6 @@ public class GameTimeManager : MonoBehaviour
     {
         if (timeText != null)
         {
-            //timeText.text = gameTime.ToString("HH:mm");
             timeText.text = gameTime.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
             dayText.text = currentDay.ToString();
         }
@@ -100,9 +98,9 @@ public class GameTimeManager : MonoBehaviour
     }
     void EndDay()
     {
-        isRunning = false;  // Đồng hồ dừng
+        isRunning = false;  
         isEndday = true;
-        GameManager.OnCloseStore?.Invoke();
+        StoreManager.OnCloseStore?.Invoke();
         Debug.Log("Kết thúc ngày!");
     }
     private bool CheckSlotAll()
@@ -156,7 +154,7 @@ public class GameTimeManager : MonoBehaviour
                 timer = 0f; 
             }
             UpdateUI();
-            if (GameManager.Instance.GetState())
+            if (StoreManager.Instance.GetState())
             {
                 isRunning = true;
             }
@@ -169,8 +167,7 @@ public class GameTimeManager : MonoBehaviour
     }
     public void StartNewDay()
     {
-        GameManager.Instance.Setstate();
-        FirebaseLogger.Ins.LogEvent("end_day", new Firebase.Analytics.Parameter("day", currentDay.ToString()));
+        StoreManager.Instance.Setstate();
         currentDay++;
         timer = 0f;
         gameTime = new DateTime(1, 1, 1, startHour, 0, 0);

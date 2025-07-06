@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ShopGUI : BaseGUI
 {
-    [Header("UI Elements")]
     [SerializeField] private GameObject shopPanel;
     [SerializeField] private Text totalPriceText;
     [SerializeField] private Sprite imageclick;
@@ -18,7 +17,6 @@ public class ShopGUI : BaseGUI
     public Button buttonClear;
     public Button buttonAddtocart;
 
-    [Header("Shop Panels")]
     [SerializeField] private GameObject panelProduct;
     [SerializeField] private GameObject panelTank;
     ShopController shopController;

@@ -67,7 +67,7 @@ public class MoneyPanel : MonoBehaviour
     }
     public void Payment()
     {
-        if (/*PayMentUI.OnCheckPayment?.Invoke() == true*/ OnCheckPayment?.Invoke() == true)
+        if ( OnCheckPayment?.Invoke() == true)
         {
             Vibrator.SoftVibrate();
             CustomerStateMachine payCus = cashDesk.GetFirstCustomerInQueue() as CustomerStateMachine;
@@ -75,7 +75,7 @@ public class MoneyPanel : MonoBehaviour
             {
                 payCus.ChangeState<TakingState>();
                 Clear();
-                ShopLevelManager.OnAddExp?.Invoke(5);
+                LevelManager.OnAddExp?.Invoke(5);
                 
             }
         }
@@ -87,7 +87,7 @@ public class MoneyPanel : MonoBehaviour
         Vibrator.SoftVibrate();
         GameObject newMoney = GetFromMoneyPoolOrInstantiate();
         SetupAndFly(newMoney, moneyValues[index], moneyMeshs[index]);
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("MONEY"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("MONEY"));
     }
 
     public void SpawnCoin(int index)
@@ -97,7 +97,7 @@ public class MoneyPanel : MonoBehaviour
         GameObject newCoin = GetFromCoinPoolOrInstantiate();
         newCoin.transform.localScale = new Vector3(30f, 30f, 30f);
         SetupAndFly(newCoin, coinValues[index], coinMeshs[index]);
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("COIN"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("COIN"));
     }
 
     private GameObject GetFromMoneyPoolOrInstantiate()

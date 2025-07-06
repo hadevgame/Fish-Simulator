@@ -26,7 +26,7 @@ public abstract class BaseTank : MonoBehaviour
     public Text countText;
     public bool isValidSlot;
     protected bool hasCreature = false;
-    public ItemSLot tank;
+    public ItemData tank;
     public Renderer highlightRenderer;
     protected virtual void Start()
     {

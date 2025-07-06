@@ -62,34 +62,6 @@ public class PayMentUI : MonoBehaviour
         }
     }
 
-    //public bool CheckPayment()
-    //{
-    //    iscard = false;
-    //    if (IsMoneyEqual(curGiving, change))
-    //    {
-    //        success = true;
-    //        NotifiGUI.Instance.ShowPopup("Payment successful");
-    //        FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("is_card", iscard.ToString()), new Parameter("success", success.ToString()) });
-    //        SetDefault();
-    //        MoneyManager.instance.AddMoney(total);
-    //        this.gameObject.SetActive(false);
-    //        payment.SetActive(false);
-    //        totalScene.SetActive(true);
-    //        CheckOutController.Ins.ToggleButton(true);
-    //        btnExit.SetActive(true);
-
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        success = false;
-    //        givingText.color = Color.red;
-    //        NotifiGUI.Instance.ShowPopup("Payment fail", Color.red);
-    //        FirebaseLogger.Ins.LogEvent($"cashing", new Parameter[] { new Parameter("is_card", iscard.ToString()), new Parameter("success", success.ToString()) });
-    //        return false;
-    //    }
-    //}
-
     private bool IsMoneyEqual(float a, float b)
     {
         return a.ToString("F2") == b.ToString("F2");

@@ -1,54 +1,4 @@
-﻿//using DG.Tweening;
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.UI;
-//using UnityEngine.UIElements;
-
-//public class DailyStats : PopupAnim
-//{
-//    [SerializeField] private Text daytext;
-//    [SerializeField] private Text incometext;
-//    [SerializeField] private Text expensetext;
-//    [SerializeField] private Text profittext;
-//    [SerializeField] private Text sastisfiedtext;
-
-//    private void OnEnable()
-//    {
-//        Show();
-//        float income = MoneyManager.instance.Income;
-//        float expense = MoneyManager.instance.Expense;
-//        float profit = income - expense;
-//        int sastisfied = CashDesk.Instance.SastisfiedCus;
-
-//        daytext.text = GameTimeManager.Instance.CurrentDay.ToString();
-//        sastisfiedtext.text = sastisfied.ToString();
-//        incometext.text = "+$" + income.ToString();
-//        expensetext.text = "-$" + expense.ToString();
-
-//        if (profit >= 0)
-//        {
-//            profittext.text = "+$" + profit.ToString();
-//        }
-
-//        else
-//        {
-//            profittext.text = "-$" + Mathf.Abs(profit).ToString();
-//            profittext.color = expensetext.color; // màu giống chi phí
-//        }
-//    }
-//    public void StartNewDay()
-//    {
-//        GameTimeManager.Instance.StartNewDay();
-//        Debug.Log("Ngày mới bắt đầu!");
-//        MoneyManager.instance.ResetStat();
-//        CashDesk.Instance.SetSastisfied();
-//        Hide();
-//        //gameObject.SetActive(false);
-//    }
-
-//}
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections;
 using UCExtension.Audio;
 using UnityEngine;
@@ -65,7 +15,7 @@ public class DailyStats : PopupAnim
     private void OnEnable()
     {
         Show();
-        AudioManager.Ins.PlaySFX(GameManager.Instance.AudioSO.GetAudioClip("ED"));
+        AudioManager.Ins.PlaySFX(StoreManager.Instance.AudioSO.GetAudioClip("ED"));
         StartCoroutine(ShowStatsSequence());
     }
 
@@ -103,8 +53,8 @@ public class DailyStats : PopupAnim
     {
         textUI.text = content;
         textUI.canvasRenderer.SetAlpha(0f); 
-        textUI.CrossFadeAlpha(1f, 0.5f, false); // Hiệu ứng fade-in trong 0.5 giây
-        yield return new WaitForSeconds(0.6f); // Thời gian giữa các dòng (có thể điều chỉnh)
+        textUI.CrossFadeAlpha(1f, 0.5f, false);
+        yield return new WaitForSeconds(0.6f); 
     }
 
     public void StartNewDay()

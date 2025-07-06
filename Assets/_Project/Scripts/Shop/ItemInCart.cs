@@ -4,7 +4,6 @@ using TMPro;
 using UCExtension;
 using UnityEngine;
 using UnityEngine.UI;
-//using static UnityEditor.Progress;
 
 public class ItemInCart : MonoBehaviour
 {
