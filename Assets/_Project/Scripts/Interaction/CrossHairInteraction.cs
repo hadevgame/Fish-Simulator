@@ -81,6 +81,7 @@ public class CrossHairInteraction : MonoBehaviour
         }
         else if (interactionController.heldObject != null && interactionController.isHeld && !interactionController.isPlacing)
         {
+            ToggleButton(buttonDrop, true);
             if (interactionController.heldObject.CompareTag(GameConstants.BOX)) 
             {
                 ToggleButton(buttonPlacing, true);
@@ -109,6 +110,7 @@ public class CrossHairInteraction : MonoBehaviour
         button.gameObject.SetActive(isActive);
         button.interactable = isActive;
     }
+
     public void OnPlacing()
     {
         if (interactionController.heldObject != null)
@@ -116,6 +118,7 @@ public class CrossHairInteraction : MonoBehaviour
             interactionController.StartPlacingMode();
         }
     }
+
     public void StopPlacing()
     {
         if (interactionController.heldObject != null)
@@ -128,6 +131,7 @@ public class CrossHairInteraction : MonoBehaviour
         }
         interactionController.ConfirmPlacingMode();
     }
+
     public void StartHold()
     {
         if (interactionController.heldObject != null) return;
@@ -166,6 +170,7 @@ public class CrossHairInteraction : MonoBehaviour
 
         isHolding = false;
     }
+
     private void AddHoldEventsToButton(Button button)
     {
         EventTrigger trigger = button.GetComponent<EventTrigger>();
@@ -186,6 +191,7 @@ public class CrossHairInteraction : MonoBehaviour
         entryUp.callback.AddListener((eventData) => { StopHold(); });
         trigger.triggers.Add(entryUp);
     }
+
     private void HandleRaycast()
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));

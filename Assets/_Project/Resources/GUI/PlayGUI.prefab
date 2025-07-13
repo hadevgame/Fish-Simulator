@@ -936,7 +936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6801404440437105533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1033,11 +1033,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913db60cc512ddd42ad3812f7985caee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonInteract: {fileID: 8705358182885786761}
   buttonDrop: {fileID: 2175244425637975548}
   buttonPlacing: {fileID: 5148707231913500498}
   joystick: {fileID: 4840179792571654712}
   touchField: {fileID: 8048253621515050678}
+  buttonInteract: {fileID: 8705358182885786761}
 --- !u!225 &430955594228977433
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1171,7 +1171,6 @@ GameObject:
   - component: {fileID: 6911112527487853951}
   - component: {fileID: 2750053489259661756}
   - component: {fileID: 7673002325069982555}
-  - component: {fileID: 7921626851985918222}
   - component: {fileID: 1368740437805176595}
   - component: {fileID: 6322780876065921283}
   m_Layer: 5
@@ -1241,21 +1240,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7921626851985918222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6708977899723003733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ababe8aac44aa74da3b12eff0ace914, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nametext: {fileID: 2095364570760216669}
-  counttext: {fileID: 8641157430976953502}
-  imageItem: {fileID: 1513129286173295070}
 --- !u!225 &1368740437805176595
 CanvasGroup:
   m_ObjectHideFlags: 0

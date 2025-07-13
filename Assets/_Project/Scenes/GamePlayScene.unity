@@ -10979,7 +10979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   moveSpeed: 5
-  isPCControl: 0
+  isPCControl: 1
 --- !u!143 &1198987870
 CharacterController:
   m_ObjectHideFlags: 0
